@@ -1,0 +1,22 @@
+function f_aptget {
+  echo "[$SCRIPT_COUNT] Updating the package index files from their sources"
+
+  $APT update
+
+  ((SCRIPT_COUNT++))
+
+  echo "[$SCRIPT_COUNT] Upgrading installed packages"
+
+  $APT upgrade
+
+  ((SCRIPT_COUNT++))
+}
+
+function f_aptget_clean {
+  echo "[$SCRIPT_COUNT] Removing unused packages"
+
+  apt-get -qq clean
+  apt-get -qq autoremove
+
+  ((SCRIPT_COUNT++))
+}
